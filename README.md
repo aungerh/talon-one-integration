@@ -21,8 +21,6 @@ Finally, I'd like to keep the time frame a bit open for this as I understand you
 
 ---
 
-RAW assignment
-
 # Part 0: Credentials
 
 Accessing the Talon.one dashboard. This frontend is where marketers are expected to create their applications, campaigns and promotion rules.
