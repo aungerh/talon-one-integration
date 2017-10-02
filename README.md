@@ -11,7 +11,7 @@ Finally, I'd like to keep the time frame a bit open for this as I understand you
 # Tasks
 
 - [ ] set up slack channel
-- [ ] set up a deadline
+- [ ] decide upon a deadline
 
 # Resources
 
