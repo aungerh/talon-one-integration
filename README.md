@@ -1,5 +1,70 @@
 # Assignment Description
 
+goal: **To get you familiar with Talon.One by interacting with it, and in the process to write some Go code**
+
+Feel free to contact us with any questions at all times, if you think you'd like a more interactive means of communication than email we can create a channel on slack during the week to talk there.
+
+Also you're welcome to check in partial updates on your progress so we can help/guide if needed or if you're struggling with anything in particular, or just to know where you are.
+
+Finally, I'd like to keep the time frame a bit open for this as I understand you may have other things going on and need to get organized, so progress at your own pace. I encourage you to set your own deadline even if you have to move it later (it is totally expected for that to happen since you don't know the system yet).
+
+# Tasks
+
+- [ ] set up slack channel
+- [ ] set up a deadline
+
+# Resources
+
+- https://developers.talon.one/
+- https://help.talon.one/
+- https://developers.talon.one/platforms/#shop-plugins (assignment 1 resource)
+
+---
+
+RAW assignment
+
+# Part 0: Credentials
+
+Accessing the Talon.one dashboard. This frontend is where marketers are expected to create their applications, campaigns and promotion rules.
+
+# Part 1: Writting an integration client in Go
+
+The first program will be an integration client for Talon.One, name this package `TalonOneClient`. focus on the three event calls for:
+
+- `update customer profile`
+- `update customer session`
+- `send events`
+
+# Part 2: Set up your campaigns to try out your integration
+
+## Pre-conditions
+
+- `Campaign Manager` frontend -> create an Application with 3 different campaigns on it.
+
+## TODO's *(a.k.a: steps needed to test the integration)*
+
+- In the first campaign create a rule that will check that a session was created (use the condition in Events->Session Created) and pick any effect for it
+
+- in the second campaign create a rule that will check for a characteristic of the Customer Profile, again you can pick any effect here.
+
+- Finally before going into the third campaign go to the user menu in the top right, enter the Developer section and in Attributes go to create a new attribute. There create any attribute you prefer for the Event entity (gotcha: in the Event Type field press 'tab' after writing or it will not let you save, this is a bug yes :P ). Now go into the third campaign and make a rule with a condition that checks for that attribute. The attribute corresponds to a custom event created with the Event Type field, this is what you will use to actually send that event when integrating, and the attribute will be in the payload. Pick any effect for this rule.
+
+
+# Part 3: Test your integration client from a CLI
+
+## Requirements
+
+The following will be to create another Go program that will use the TalonOneClient package to integrate with Talon.One.
+
+This program should be a very simple command line program that will send three hard-coded events to trigger the effects of the conditions of the campaigns previously created, so it will have to update a customer session that fulfills the conditions of the first campaign (by just PUTting a session with a new integration id it will create it and fulfill the rule) and print out the effects, and the same with customer profiles and a custom event.
+
+The program should be very short, requiring no interaction, just sending the events using the client and printing out the effects from the response.
+
+---
+
+# RAW
+
+```
 Hi Alex,
   first of all it was very nice to meet you on Friday, thanks for coming in, I had to leave before you but I'm happy to know you had a good time too!
 
@@ -70,3 +135,4 @@ I hope you have fun with it.
 
 Best,
 Julian.
+```
