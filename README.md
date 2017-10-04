@@ -1,4 +1,4 @@
-# Assignment Description
+# Description
 
 goal: **To get you familiar with Talon.One by interacting with it, and in the process to write some Go code**
 
@@ -10,8 +10,10 @@ Finally, I'd like to keep the time frame a bit open for this as I understand you
 
 # Tasks
 
-- [ ] set up slack channel
-- [ ] decide upon a deadline
+- [X] set up slack channel
+- [X] decide upon a deadline
+- [X] major cleanup
+- [ ] test integration with Talon.one dashboard
 
 # Resources
 
