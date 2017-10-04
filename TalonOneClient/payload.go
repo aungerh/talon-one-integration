@@ -2,14 +2,17 @@ package TalonOneClient
 
 // Payload represents the body of the request
 type Payload struct {
+	AppID  int    `json:"-"`
+	AppKey string `json:"-"`
+
 	ProfileID  string     `json:"profileId,omitempty"`
 	SessionID  string     `json:"sessionId,omitempty"`
 	Coupon     string     `json:"coupon,omitempty"`
 	Referral   string     `json:"referral,omitempty"`
 	State      string     `json:"state,omitempty"`
 	CartItems  string     `json:"cartItems,omitempty"`
-	Total      int        `json:"total,omitempty"`
 	Type       string     `json:"type,omitempty"`
+	Total      int        `json:"total,omitempty"`
 	Attributes Attributes `json:"attributes"`
 	URLParams  string     `json:"-"`
 }

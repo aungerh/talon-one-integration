@@ -16,16 +16,14 @@ func BuildAndRequest(method string, p *Payload, dest string) {
 	js, _ := json.Marshal(*p)
 	fmt.Println(string(js))
 	req, _ := http.NewRequest(method, dest, bytes.NewBuffer(js))
-	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
+	signatureVal := fmt.Sprintf("signer=%d; signature=%s", p.AppID, signPayload(p, js))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Content-Signature", signatureVal)
 	doRequest(req)
 }
 
-func signPayload(body []byte) string {
-	// environment variable (not in demo)
-	const s = "4aece57f964f4784"
-	decoded, _ := hex.DecodeString(s)
+func signPayload(p *Payload, body []byte) string {
+	decoded, _ := hex.DecodeString(p.AppKey)
 	sig := hmac.New(md5.New, decoded)
 	sig.Write(body)
 	return hex.EncodeToString(sig.Sum(nil))
