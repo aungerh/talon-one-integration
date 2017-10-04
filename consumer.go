@@ -11,7 +11,7 @@ func main() {
 			Name: "Alex",
 		},
 	}
-	client.Payload.UpdateCustomerProfile(client)
+	client.UpdateCustomerProfile()
 
 	client.Payload = TalonOneClient.Payload{
 		ProfileID:  "306",
@@ -19,7 +19,7 @@ func main() {
 		Type:       "dangerous",
 		Attributes: TalonOneClient.Attributes{},
 	}
-	client.Payload.SendEvents(client)
+	client.SendEvents()
 
 	client.Payload = TalonOneClient.Payload{
 		URLParams:  "NewCustomerSession60",
@@ -28,5 +28,5 @@ func main() {
 		Total:      200,
 		Attributes: TalonOneClient.Attributes{},
 	}
-	client.Payload.UpdateCustomerSession(client)
+	client.UpdateCustomerSession()
 }
