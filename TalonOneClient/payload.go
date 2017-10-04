@@ -11,7 +11,7 @@ type Payload struct {
 	Total      string     `json:"total,omitempty"`
 	Type       string     `json:"type,omitempty"`
 	Attributes Attributes `json:"attributes"`
-	URLParams  string     `json:"urlParams,omitempty"`
+	URLParams  string
 }
 
 // Attributes maps the customer attributes
