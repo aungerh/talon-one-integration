@@ -51,15 +51,15 @@ type Attributes struct {
 
 // UpdateCustomerProfile updates customer profile
 func (p *Payload) UpdateCustomerProfile() {
-	BuildAndRequest(p, customerProfileEndpoint+p.URLParams)
+	BuildAndRequest("PUT", p, customerProfileEndpoint+p.URLParams)
 }
 
 // UpdateCustomerSession updates a session
 func (p *Payload) UpdateCustomerSession() {
-	BuildAndRequest(p, customerSessionsEndpoint+p.URLParams)
+	BuildAndRequest("PUT", p, customerSessionsEndpoint+p.URLParams)
 }
 
 // SendEvents report events
 func (p *Payload) SendEvents() {
-	BuildAndRequest(p, eventsEndpoint)
+	BuildAndRequest("POST", p, eventsEndpoint)
 }
