@@ -13,7 +13,7 @@ import (
 )
 
 // BuildAndRequest builds and triggers the request - low ABC score
-func BuildAndRequest(method string, p *Payload, client *Client, dest string) {
+func BuildAndRequest(method string, p *Payload, dest string, client *Client) {
 	body, _ := json.Marshal(*p)
 	req, _ := http.NewRequest(method, dest, bytes.NewBuffer(body))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", client.AppID, signPayload(client.AppKey, body))

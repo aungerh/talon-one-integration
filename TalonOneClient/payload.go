@@ -48,18 +48,3 @@ type Attributes struct {
 	PaymentMethod      string `json:"PaymentMethod,omitempty"`
 	PaymentHash        string `json:"PaymentHash,omitempty"`
 }
-
-// UpdateCustomerProfile updates customer profile
-func (p *Payload) UpdateCustomerProfile(c *Client) {
-	BuildAndRequest("PUT", p, c, customerProfileEndpoint+p.URLParams)
-}
-
-// UpdateCustomerSession updates a session
-func (p *Payload) UpdateCustomerSession(c *Client) {
-	BuildAndRequest("PUT", p, c, customerSessionsEndpoint+p.URLParams)
-}
-
-// SendEvents report events
-func (p *Payload) SendEvents(c *Client) {
-	BuildAndRequest("POST", p, c, eventsEndpoint)
-}
