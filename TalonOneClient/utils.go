@@ -12,18 +12,18 @@ import (
 )
 
 // BuildAndRequest builds the request and fires it
-func BuildAndRequest(method string, p *Payload, dest string) {
+func BuildAndRequest(method string, p *Payload, c *Client, dest string) {
 	js, _ := json.Marshal(*p)
 	fmt.Println(string(js))
 	req, _ := http.NewRequest(method, dest, bytes.NewBuffer(js))
-	signatureVal := fmt.Sprintf("signer=%d; signature=%s", p.AppID, signPayload(p, js))
+	signatureVal := fmt.Sprintf("signer=%d; signature=%s", c.AppID, signPayload(c.AppKey, js))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Content-Signature", signatureVal)
 	doRequest(req)
 }
 
-func signPayload(p *Payload, body []byte) string {
-	decoded, _ := hex.DecodeString(p.AppKey)
+func signPayload(appKey string, body []byte) string {
+	decoded, _ := hex.DecodeString(appKey)
 	sig := hmac.New(md5.New, decoded)
 	sig.Write(body)
 	return hex.EncodeToString(sig.Sum(nil))

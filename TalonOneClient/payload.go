@@ -2,9 +2,6 @@ package TalonOneClient
 
 // Payload represents the body of the request
 type Payload struct {
-	AppID  int    `json:"-"`
-	AppKey string `json:"-"`
-
 	ProfileID  string     `json:"profileId,omitempty"`
 	SessionID  string     `json:"sessionId,omitempty"`
 	Coupon     string     `json:"coupon,omitempty"`
@@ -53,16 +50,16 @@ type Attributes struct {
 }
 
 // UpdateCustomerProfile updates customer profile
-func (p *Payload) UpdateCustomerProfile() {
-	BuildAndRequest("PUT", p, customerProfileEndpoint+p.URLParams)
+func (p *Payload) UpdateCustomerProfile(c *Client) {
+	BuildAndRequest("PUT", p, c, customerProfileEndpoint+p.URLParams)
 }
 
 // UpdateCustomerSession updates a session
-func (p *Payload) UpdateCustomerSession() {
-	BuildAndRequest("PUT", p, customerSessionsEndpoint+p.URLParams)
+func (p *Payload) UpdateCustomerSession(c *Client) {
+	BuildAndRequest("PUT", p, c, customerSessionsEndpoint+p.URLParams)
 }
 
 // SendEvents report events
-func (p *Payload) SendEvents() {
-	BuildAndRequest("POST", p, eventsEndpoint)
+func (p *Payload) SendEvents(c *Client) {
+	BuildAndRequest("POST", p, c, eventsEndpoint)
 }

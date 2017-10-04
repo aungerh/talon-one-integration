@@ -7,10 +7,10 @@ const (
 )
 
 // NewClient credentials initialization
-func NewClient(appID int, appKey string) *Payload {
-	p := &Payload{
+func NewClient(appID int, appKey string) *Client {
+	c := &Client{
 		AppID:  appID,
 		AppKey: appKey,
 	}
-	return p
+	return c
 }
