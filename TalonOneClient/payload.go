@@ -57,39 +57,25 @@ type Attributes struct {
 }
 
 // UpdateCustomerProfile updates customer profile
-// TODO abstract common blocks
 func (p *Payload) UpdateCustomerProfile() {
-	url := customerProfileEndpoint + p.URLParams
-	js, _ := json.Marshal(*p)
-	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
-	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Content-Signature", signatureVal)
-
-	doRequest(req)
+	buildAndRequest(p, customerProfileEndpoint+p.URLParams)
 }
 
 // UpdateCustomerSession updates a session
-// TODO abstract common blocks
 func (p *Payload) UpdateCustomerSession() {
-	url := customerSessionsEndpoint + p.URLParams
-	js, _ := json.Marshal(*p)
-	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
-	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
-	req.Header.Set("Content-Type", "application/json")
-	req.Header.Set("Content-Signature", signatureVal)
-
-	doRequest(req)
+	buildAndRequest(p, customerSessionsEndpoint+p.URLParams)
 }
 
 // SendEvents report events
-// TODO abstract common blocks
 func (p *Payload) SendEvents() {
+	buildAndRequest(p, eventsEndpoint+p.URLParams)
+}
+
+func buildAndRequest(p *Payload, dest string) {
 	js, _ := json.Marshal(*p)
-	req, _ := http.NewRequest("PUT", eventsEndpoint, bytes.NewBuffer(js))
+	req, _ := http.NewRequest("PUT", dest, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Content-Signature", signatureVal)
-
 	doRequest(req)
 }
