@@ -62,9 +62,6 @@ func (p *Payload) UpdateCustomerProfile() {
 	profileName := "tronald_dump"
 	url := dest + profileName
 
-	// triggers campaign1
-	p.Attributes.Name = "Trump"
-
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
