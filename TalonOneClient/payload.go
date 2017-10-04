@@ -61,7 +61,7 @@ func (p *Payload) UpdateCustomerProfile() {
 	profileName := "tronald_dump"
 	url := dest + profileName
 
-	p.Attributes.Name = "Trump"
+	p.Attributes.Name = "Trumpf"
 
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
