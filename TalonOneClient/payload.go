@@ -53,6 +53,7 @@ type attributes struct {
 }
 
 // UpdateCustomerProfile updates customer profile
+// TODO abstract common blocks
 func (p *Payload) UpdateCustomerProfile() {
 	dest := "https://demo.talon.one/v1/customer_profiles/"
 	profileName := "tronald_dump"
@@ -70,6 +71,7 @@ func (p *Payload) UpdateCustomerProfile() {
 }
 
 // UpdateCustomerSession updates a session
+// TODO abstract common blocks
 func (p *Payload) UpdateCustomerSession() {
 	dest := "https://demo.talon.one/v1/customer_sessions/"
 	sessionName := "SessionTest11"
