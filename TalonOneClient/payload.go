@@ -10,11 +10,13 @@ import (
 // Payload represents the body of the request
 type Payload struct {
 	ProfileID  string     `json:"profileId,omitempty"`
+	SessionID  string     `json:"sessionId,omitempty"`
 	Coupon     string     `json:"coupon,omitempty"`
 	Referral   string     `json:"referral,omitempty"`
 	State      string     `json:"state,omitempty"`
 	CartItems  string     `json:"cartItems,omitempty"`
 	Total      string     `json:"total,omitempty"`
+	Type       string     `json:"type,omitempty"`
 	Attributes attributes `json:"attributes"`
 }
 
@@ -59,7 +61,7 @@ func (p *Payload) UpdateCustomerProfile() {
 	profileName := "tronald_dump"
 	url := dest + profileName
 
-	p.Attributes.Gender = "m"
+	p.Attributes.Name = "Trump"
 
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
@@ -77,10 +79,27 @@ func (p *Payload) UpdateCustomerSession() {
 	sessionName := "SessionTest11"
 	url := dest + sessionName
 
-	p.Coupon = "LJI523KI"
+	p.ProfileID = "306"
 
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
+	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Signature", signatureVal)
+
+	doRequest(req)
+}
+
+// SendEvents report events
+// TODO abstract common blocks
+func (p *Payload) SendEvents() {
+	dest := "https://demo.talon.one/v1/events/"
+
+	p.ProfileID = "306"
+	p.SessionID = "298"
+
+	js, _ := json.Marshal(*p)
+	req, _ := http.NewRequest("PUT", dest, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Content-Signature", signatureVal)
