@@ -8,7 +8,7 @@ type Payload struct {
 	Referral   string     `json:"referral,omitempty"`
 	State      string     `json:"state,omitempty"`
 	CartItems  string     `json:"cartItems,omitempty"`
-	Total      string     `json:"total,omitempty"`
+	Total      int        `json:"total,omitempty"`
 	Type       string     `json:"type,omitempty"`
 	Attributes Attributes `json:"attributes"`
 	URLParams  string     `json:"-"`
