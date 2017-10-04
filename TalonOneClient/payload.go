@@ -17,10 +17,11 @@ type Payload struct {
 	CartItems  string     `json:"cartItems,omitempty"`
 	Total      string     `json:"total,omitempty"`
 	Type       string     `json:"type,omitempty"`
-	Attributes attributes `json:"attributes"`
+	Attributes Attributes `json:"attributes"`
 }
 
-type attributes struct {
+// Attributes maps the customer attributes
+type Attributes struct {
 	Name               string `json:"Name,omitempty"`
 	Gender             string `json:"Gender,omitempty"`
 	BirthDate          string `json:"BirthDate,omitempty"`
@@ -61,7 +62,8 @@ func (p *Payload) UpdateCustomerProfile() {
 	profileName := "tronald_dump"
 	url := dest + profileName
 
-	p.Attributes.Name = "Trumpf"
+	// triggers campaign1
+	p.Attributes.Name = "Trump"
 
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
