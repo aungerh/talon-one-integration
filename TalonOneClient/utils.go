@@ -12,7 +12,7 @@ import (
 	"net/http"
 )
 
-// BuildAndRequest builds and triggers the request
+// BuildAndRequest builds and triggers the request - low ABC score
 func BuildAndRequest(method string, p *Payload, client *Client, dest string) {
 	body, _ := json.Marshal(*p)
 	req, _ := http.NewRequest(method, dest, bytes.NewBuffer(body))
