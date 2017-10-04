@@ -59,9 +59,7 @@ type Attributes struct {
 // UpdateCustomerProfile updates customer profile
 // TODO abstract common blocks
 func (p *Payload) UpdateCustomerProfile() {
-	dest := "https://demo.talon.one/v1/customer_profiles/"
-	url := dest + p.URLParams
-
+	url := customerProfileEndpoint + p.URLParams
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
@@ -74,13 +72,7 @@ func (p *Payload) UpdateCustomerProfile() {
 // UpdateCustomerSession updates a session
 // TODO abstract common blocks
 func (p *Payload) UpdateCustomerSession() {
-	dest := "https://demo.talon.one/v1/customer_sessions/"
-	// use p.URLParams instead
-	sessionName := "SessionTest11"
-	url := dest + sessionName
-
-	p.ProfileID = "306"
-
+	url := customerSessionsEndpoint + p.URLParams
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
@@ -93,13 +85,8 @@ func (p *Payload) UpdateCustomerSession() {
 // SendEvents report events
 // TODO abstract common blocks
 func (p *Payload) SendEvents() {
-	dest := "https://demo.talon.one/v1/events/"
-
-	p.ProfileID = "306"
-	p.SessionID = "298"
-
 	js, _ := json.Marshal(*p)
-	req, _ := http.NewRequest("PUT", dest, bytes.NewBuffer(js))
+	req, _ := http.NewRequest("PUT", eventsEndpoint, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Content-Signature", signatureVal)
