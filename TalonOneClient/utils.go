@@ -14,6 +14,7 @@ import (
 // BuildAndRequest builds the request and fires it
 func BuildAndRequest(p *Payload, dest string) {
 	js, _ := json.Marshal(*p)
+	fmt.Println(string(js))
 	req, _ := http.NewRequest("PUT", dest, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
 	req.Header.Set("Content-Type", "application/json")
