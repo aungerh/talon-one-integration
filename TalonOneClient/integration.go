@@ -11,7 +11,8 @@ import (
 	"net/http"
 )
 
-func (p *Payload) updateCustomerProfile() {
+// UpdateCustomerProfile updates customer profile
+func (p *Payload) UpdateCustomerProfile() {
 	dest := "https://demo.talon.one/v1/customer_profiles/"
 	profileName := "tronald_dump"
 	url := dest + profileName
