@@ -18,6 +18,7 @@ type Payload struct {
 	Total      string     `json:"total,omitempty"`
 	Type       string     `json:"type,omitempty"`
 	Attributes Attributes `json:"attributes"`
+	URLParams  string
 }
 
 // Attributes maps the customer attributes
@@ -59,8 +60,7 @@ type Attributes struct {
 // TODO abstract common blocks
 func (p *Payload) UpdateCustomerProfile() {
 	dest := "https://demo.talon.one/v1/customer_profiles/"
-	profileName := "tronald_dump"
-	url := dest + profileName
+	url := dest + p.URLParams
 
 	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
@@ -75,6 +75,7 @@ func (p *Payload) UpdateCustomerProfile() {
 // TODO abstract common blocks
 func (p *Payload) UpdateCustomerSession() {
 	dest := "https://demo.talon.one/v1/customer_sessions/"
+	// use p.URLParams instead
 	sessionName := "SessionTest11"
 	url := dest + sessionName
 
