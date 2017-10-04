@@ -9,6 +9,12 @@ import (
 
 // Payload represents the body of the request
 type Payload struct {
+	ProfileID  string     `json:"profileId,omitempty"`
+	Coupon     string     `json:"coupon,omitempty"`
+	Referral   string     `json:"referral,omitempty"`
+	State      string     `json:"state,omitempty"`
+	CartItems  string     `json:"cartItems,omitempty"`
+	Total      string     `json:"total,omitempty"`
 	Attributes attributes `json:"attributes"`
 }
 
@@ -51,10 +57,27 @@ func (p *Payload) UpdateCustomerProfile() {
 	dest := "https://demo.talon.one/v1/customer_profiles/"
 	profileName := "tronald_dump"
 	url := dest + profileName
-	js, _ := json.Marshal(*p)
 
 	p.Attributes.Gender = "m"
 
+	js, _ := json.Marshal(*p)
+	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
+	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
+	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Signature", signatureVal)
+
+	doRequest(req)
+}
+
+// UpdateCustomerSession updates a session
+func (p *Payload) UpdateCustomerSession() {
+	dest := "https://demo.talon.one/v1/customer_sessions/"
+	sessionName := "SessionTest11"
+	url := dest + sessionName
+
+	p.Coupon = "LJI523KI"
+
+	js, _ := json.Marshal(*p)
 	req, _ := http.NewRequest("PUT", url, bytes.NewBuffer(js))
 	signatureVal := fmt.Sprintf("signer=%d; signature=%s", 60, signPayload(js))
 	req.Header.Set("Content-Type", "application/json")
