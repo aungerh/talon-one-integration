@@ -61,5 +61,5 @@ func (p *Payload) UpdateCustomerSession() {
 
 // SendEvents report events
 func (p *Payload) SendEvents() {
-	BuildAndRequest(p, eventsEndpoint+p.URLParams)
+	BuildAndRequest(p, eventsEndpoint)
 }
