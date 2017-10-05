@@ -8,7 +8,8 @@ alternatively: include the package in your source
 
 1. `~> go get github.com/zyxan/talon-one-integration/TalonOneClient`
 2. in your source: `import "github.com/zyxan/talon-one-integration/TalonOneClient"`
-3. profit
+3. ????
+4. profits
 
 # Description
 
