@@ -4,6 +4,12 @@
 2. `cd ~/talon-one-integration`
 3. `go run consumer.go`
 
+alternatively: include the package in your source
+
+1. `~> go get github.com/zyxan/talon-one-integration/TalonOneClient`
+2. in your source: `import "github.com/zyxan/talon-one-integration/TalonOneClient"`
+3. profit
+
 # Description
 
 goal: **To get you familiar with Talon.One by interacting with it, and in the process to write some Go code**
