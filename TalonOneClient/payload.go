@@ -47,4 +47,5 @@ type Attributes struct {
 	ShippingCountry    string `json:"ShippingCountry,omitempty"`
 	PaymentMethod      string `json:"PaymentMethod,omitempty"`
 	PaymentHash        string `json:"PaymentHash,omitempty"`
+	ExtremelyDangerous string `json:"extremely_dangerous,omitempty"`
 }
